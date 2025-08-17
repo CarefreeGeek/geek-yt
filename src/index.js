@@ -1,19 +1,15 @@
 // require('dotenv').config({path: './env'})
 
-import dotenv from 'dotenv'
 import connectDB from './db/index.js'
 import {app} from './app.js'
-dotenv.config({path: './.env'})
+import dotenv from "dotenv";
+dotenv.config();
 
-
-
-
-
-
-
-
-
-
+console.log("Cloudinary config:", {
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY ? "loaded" : "missing",
+  api_secret: process.env.CLOUDINARY_API_SECRET ? "loaded" : "missing"
+});
 
 connectDB()
 .then(() => {
@@ -24,37 +20,3 @@ connectDB()
 .catch((error) => {
     console.error("Error connecting to MongoDB:", error);
 });
-
-
-
-
-
-
-
-
-
-
-//  Express server setup
-/*
-const app = express();
-
-( async () => {
-    try {
-        await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`)
-        app.on("error", (error) => {
-            console.error("Express error:", error);
-            throw error;
-        });
-
-        app.listen(process.env.PORT, () => {
-            console.log(`Server is running on port ${process.env.PORT}`);
-        });
-
-        // const app = express();
-
-    } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
-        throw error;
-    }
-})()
-*/
